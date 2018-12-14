@@ -24,3 +24,6 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+
+### Files ###
+/src/main/resources/config/itcont2.txt
