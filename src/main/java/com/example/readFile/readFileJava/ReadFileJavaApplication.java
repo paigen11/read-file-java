@@ -1,6 +1,5 @@
 package com.example.readFile.readFileJava;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
@@ -8,16 +7,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.nio.file.Files;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -30,8 +25,9 @@ public class ReadFileJavaApplication {
 	public static void main(String[] args) {
 		try {
 
-			File f = new File("src/main/resources/config/test.txt");
-//			File f = new File("src/main/resources/config/itcont2.txt");
+//			File f = new File("src/main/resources/config/test.txt");
+			File f = new File("src/main/resources/config/itcont2.txt");
+//			File f = new File("/Users/pxn5096/Downloads/indiv18/itcont.txt");
 
 			try (BufferedReader b = new BufferedReader(new FileReader(f))) {
 
@@ -51,12 +47,14 @@ public class ReadFileJavaApplication {
 				indexes.add(433);
 				indexes.add(43244);
 
-				// todo: count the number of donations by month
+				// count the number of donations by month
+				Instant donationsStart = Instant.now();
+				ArrayList<String> dates = new ArrayList<>();
 
 				// count the occurrences of first name
 				Instant commonNameStart = Instant.now();
 				ArrayList<String> firstNames = new ArrayList<>();
-				
+
 
 				System.out.println("Reading file using Buffered Reader");
 
@@ -87,6 +85,13 @@ public class ReadFileJavaApplication {
 							}
 						}
 					}
+
+					String rawDate = array1[4];
+					String month = rawDate.substring(4,6);
+					String year = rawDate.substring(0,4);
+					String formattedDate = month + "-" + year;
+					dates.add(formattedDate);
+
 				}
 
 				Instant namesEnd = Instant.now();
@@ -97,6 +102,25 @@ public class ReadFileJavaApplication {
 				Instant lineCountEnd = Instant.now();
 				long timeElapsedLineCount = Duration.between(lineCountStart, lineCountEnd).toMillis();
 				System.out.println("Line count time: " + timeElapsedLineCount + "ms");
+
+				HashMap<String, Integer> dateMap = new HashMap<>();
+				for(String date:dates){
+					Integer count = dateMap.get(date);
+					if (count == null) {
+						dateMap.put(date, 1);
+					} else {
+						dateMap.put(date, count + 1);
+					}
+				}
+				for (Map.Entry<String, Integer> entry : dateMap.entrySet()) {
+					String key = entry.getKey();
+					Integer value = entry.getValue();
+					System.out.println("Donations per month and year: " + entry.getKey() + " and donation count: " + entry.getValue());
+
+				}
+				Instant donationsEnd = Instant.now();
+				long timeElapsedDonations = Duration.between(donationsStart, donationsEnd).toMillis();
+				System.out.println("Donations time: " + timeElapsedDonations + "ms");
 
 				HashMap<String, Integer> map = new HashMap<>();
 				for(String name:firstNames){
@@ -117,7 +141,7 @@ public class ReadFileJavaApplication {
 						return (o2.getValue()).compareTo(o1.getValue());
 					}
 				});
-				System.out.println("The most commone first name is: " + list.get(0).getKey() + " and it occurs: " + list.get(0).getValue() + " times.");
+				System.out.println("The most common first name is: " + list.get(0).getKey() + " and it occurs: " + list.get(0).getValue() + " times.");
 				Instant commonNameEnd = Instant.now();
 				long timeElapsedCommonName = Duration.between(commonNameStart, commonNameEnd).toMillis();
 				System.out.println("Most common name time: " + timeElapsedCommonName + "ms");
@@ -127,8 +151,6 @@ public class ReadFileJavaApplication {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
-
 }
 
