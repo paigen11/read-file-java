@@ -14,6 +14,15 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import static jdk.nashorn.internal.objects.Global.undefined;
 
 @SpringBootApplication
 public class ReadFileJavaApplication {
@@ -21,8 +30,8 @@ public class ReadFileJavaApplication {
 	public static void main(String[] args) {
 		try {
 
-//			File f = new File("src/main/resources/config/test.txt");
-			File f = new File("src/main/resources/config/itcont2.txt");
+			File f = new File("src/main/resources/config/test.txt");
+//			File f = new File("src/main/resources/config/itcont2.txt");
 
 			try (BufferedReader b = new BufferedReader(new FileReader(f))) {
 
@@ -42,6 +51,13 @@ public class ReadFileJavaApplication {
 				indexes.add(433);
 				indexes.add(43244);
 
+				// todo: count the number of donations by month
+
+				// count the occurrences of first name
+				Instant commonNameStart = Instant.now();
+				ArrayList<String> firstNames = new ArrayList<>();
+				
+
 				System.out.println("Reading file using Buffered Reader");
 
 				while ((readLine = b.readLine()) != null) {
@@ -56,7 +72,23 @@ public class ReadFileJavaApplication {
 						System.out.println("Name: " + names.get(lines - 1) + " at index: " + (lines - 1));
 					}
 
+					if(name.contains(", ")) {
+
+						String array2[] = (name.split(", "));
+						String firstHalfOfName = array2[1].trim();
+
+						if (firstHalfOfName != undefined || !firstHalfOfName.isEmpty()) {
+							if (firstHalfOfName.contains(" ")) {
+								String array3[] = firstHalfOfName.split(" ");
+								String firstName = array3[0].trim();
+								firstNames.add(firstName);
+							} else {
+								firstNames.add(firstHalfOfName);
+							}
+						}
+					}
 				}
+
 				Instant namesEnd = Instant.now();
 				long timeElapsedNames = Duration.between(namesStart, namesEnd).toMillis();
 				System.out.println("Name time: " + timeElapsedNames + "ms");
@@ -65,6 +97,30 @@ public class ReadFileJavaApplication {
 				Instant lineCountEnd = Instant.now();
 				long timeElapsedLineCount = Duration.between(lineCountStart, lineCountEnd).toMillis();
 				System.out.println("Line count time: " + timeElapsedLineCount + "ms");
+
+				HashMap<String, Integer> map = new HashMap<>();
+				for(String name:firstNames){
+					Integer count = map.get(name);
+					if (count == null) {
+						map.put(name, 1);
+					} else {
+						map.put(name, count + 1);
+					}
+				}
+
+				LinkedList<Entry<String, Integer>> list = new LinkedList<>(map.entrySet());
+
+				Collections.sort(list, new Comparator<Map.Entry<String, Integer> >() {
+					public int compare(Map.Entry<String, Integer> o1,
+					                   Map.Entry<String, Integer> o2)
+					{
+						return (o2.getValue()).compareTo(o1.getValue());
+					}
+				});
+				System.out.println("The most commone first name is: " + list.get(0).getKey() + " and it occurs: " + list.get(0).getValue() + " times.");
+				Instant commonNameEnd = Instant.now();
+				long timeElapsedCommonName = Duration.between(commonNameStart, commonNameEnd).toMillis();
+				System.out.println("Most common name time: " + timeElapsedCommonName + "ms");
 
 			}
 
