@@ -20,13 +20,13 @@ import java.util.Map.Entry;
 import static jdk.nashorn.internal.objects.Global.undefined;
 
 @SpringBootApplication
-public class ReadFileJavaApplication {
+public class ReadFileJavaApplicationBufferedReader {
 
 	public static void main(String[] args) {
 		try {
 
-//			File f = new File("src/main/resources/config/test.txt");
-			File f = new File("src/main/resources/config/itcont2.txt");
+			File f = new File("src/main/resources/config/test.txt");
+//			File f = new File("src/main/resources/config/itcont2.txt");
 //			File f = new File("/Users/pxn5096/Downloads/indiv18/itcont.txt");
 
 			try (BufferedReader b = new BufferedReader(new FileReader(f))) {
@@ -60,7 +60,7 @@ public class ReadFileJavaApplication {
 
 				while ((readLine = b.readLine()) != null) {
 					lines++;
-//					System.out.println(readLine);
+					// System.out.println(readLine);
 
 					// get all the names
 					String array1[] = readLine.split("\\s*\\|\\s*");
