@@ -24,8 +24,8 @@ public class ReadFileJavaApplicationFileInputStream {
 
 	public static void main(String[] args) throws IOException {
 			File f = new File("src/main/resources/config/test.txt");
-//			File f = new File("src/main/resources/config/itcont2.txt");
-//			File f = new File("/Users/pxn5096/Downloads/indiv18/itcont.txt");
+			// File f = new File("src/main/resources/config/itcont2.txt");
+			// File f = new File("/Users/pxn5096/Downloads/indiv18/itcont.txt");
 
 			try {
 				FileInputStream inputStream = new FileInputStream(f);

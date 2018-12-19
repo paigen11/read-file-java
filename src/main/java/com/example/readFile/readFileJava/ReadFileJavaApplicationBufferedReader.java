@@ -26,8 +26,8 @@ public class ReadFileJavaApplicationBufferedReader {
 		try {
 
 			File f = new File("src/main/resources/config/test.txt");
-//			File f = new File("src/main/resources/config/itcont2.txt");
-//			File f = new File("/Users/pxn5096/Downloads/indiv18/itcont.txt");
+			// File f = new File("src/main/resources/config/itcont2.txt");
+			// File f = new File("/Users/pxn5096/Downloads/indiv18/itcont.txt");
 
 			try (BufferedReader b = new BufferedReader(new FileReader(f))) {
 
