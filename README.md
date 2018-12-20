@@ -14,6 +14,14 @@ I used Intellij's handy Spring Boot configurations to create main class runners 
 
 Add the file path for one of the files (could be the big one `itcont.txt` or any of its smaller siblings in the `indiv18` folder that were just downloaded - you can see how I set up my relative and hard coded file paths in each of the files), and then run whichever main class file you want by right clicking the file and selecting 'Run'.
 [Intellij Run](/src/main/resources/img/intellijRun.png)
+
+Either run `./gradlew assemble` and then 
+* `java -cp ./build/libs/readFileJava-0.0.1-SNAPSHOT.jar com.example.readFile.readFileJava.ReadFileJavaApplicationBufferedReader`,
+* `java -cp ./build/libs/readFileJava-0.0.1-SNAPSHOT.jar com.example.readFile.readFileJava.ReadFileJavaApplicationFileInputStream`, 
+* `java -cp ./build/libs/readFileJava-0.0.1-SNAPSHOT.jar com.example.readFile.readFileJava.ReadFileJavaApplicationLineIterator`
+for whichever method you want to run, from the command line.
+
+Or the easier way:
  
 You can set up the Spring Boot runner in Intellij, by simply specifying which main class file you want to run.
 [Intellij Configuration](/src/main/resources/img/classRunnerExample.png) 

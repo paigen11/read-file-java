@@ -1,8 +1,5 @@
 package com.example.readFile.readFileJava;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -19,7 +16,6 @@ import java.util.Map.Entry;
 
 import static jdk.nashorn.internal.objects.Global.undefined;
 
-@SpringBootApplication
 public class ReadFileJavaApplicationBufferedReader {
 
 	public static void main(String[] args) {
