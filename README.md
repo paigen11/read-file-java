@@ -30,3 +30,6 @@ Then you'll see the answers required from the file printed out to the terminal.
 
 ### To Check Performance Testing
 Performance testing is already implemented for all three files as well using `Instant.now()`. You can see the performance for the three methods by passing files of different sizes and seeing how long it takes to process them.
+
+### Gotchas
+The downloadable file seems to be live data that keeps getting larger. When I downloaded the file in the beginning of Oct 2018, it was 2.55GB. Now, some users have reported it being 3.5GB large, so please be aware some of your results and numbers will differ from mine for that reason.
