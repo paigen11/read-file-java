@@ -29,7 +29,7 @@ public class FileReadingChallenge {
     static int resultsToWaitFor = 0;
 
     static final ConcurrentHashMap<String, Integer> firstNameCount = new ConcurrentHashMap<>();
-    static final ConcurrentHashMap<Integer, Integer> monthCount = new ConcurrentHashMap<>();
+    static final ConcurrentHashMap<String, Integer> monthCount = new ConcurrentHashMap<>();
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
@@ -97,6 +97,7 @@ public class FileReadingChallenge {
         millis = Duration.between(lineReadDone, parsingDone).toMillis();
         System.out.printf("fibers kept parsing async for (approx) %d milliseconds longer\n", millis);
 
+        System.out.println();
         // present the solutions!
         System.out.println("name 432: " + names[431]);
         System.out.println("name 43243: " + names[43242]);
@@ -111,16 +112,10 @@ public class FileReadingChallenge {
             }
         }
         System.out.println("most common name is " + mostCommonName + " with " + highestNameCount + " occurences");
-
-        int highestMonthCount = 0;
-        int bestMonth = 0;
-        for (Map.Entry<Integer, Integer> entry : monthCount.entrySet()) {
-            if (entry.getValue() > highestMonthCount) {
-                bestMonth = entry.getKey();
-                highestMonthCount = entry.getValue();
-            }
+        System.out.println("now printing months and occurrences:");
+        for (Map.Entry<String, Integer> entry : monthCount.entrySet()) {
+            System.out.println("month " + entry.getKey() + " with a count of " + entry.getValue());
         }
-        System.out.println("most mentioned month is no. " + bestMonth + " with a count of " + highestMonthCount);
     }
 
     // we need to prevent race conditions on our locking variable
@@ -171,9 +166,11 @@ public class FileReadingChallenge {
                     Date date = sdf.parse(dateString.substring(0, 8));
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTime(date);
+                    int year = calendar.get(Calendar.YEAR);
                     int month = calendar.get(Calendar.MONTH);
-                    Integer count = monthCount.getOrDefault(month, 0);
-                    monthCount.put(month, count + 1);
+                    String monthString = String.format("%d-%d", month, year);
+                    Integer count = monthCount.getOrDefault(monthString, 0);
+                    monthCount.put(monthString, count + 1);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
