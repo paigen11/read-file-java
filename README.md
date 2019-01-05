@@ -33,3 +33,6 @@ Performance testing is already implemented for all three files as well using `In
 
 ### Gotchas
 The downloadable file seems to be live data that keeps getting larger. When I downloaded the file in the beginning of Oct 2018, it was 2.55GB. Now, some users have reported it being 3.5GB large, so please be aware some of your results and numbers will differ from mine for that reason.
+
+### Acknowledgements
+Thanks to [AtomicStryker](https://github.com/AtomicStryker) for his contribution to this repo. He added the `FileReadingChallenge.java` file, which demonstrates an asynchronous way of using fibers from the CompletableFuture API to read the file even faster. I appreciate the addition to provide even more ways to quickly churn through large amounts of data in small amounts of time.

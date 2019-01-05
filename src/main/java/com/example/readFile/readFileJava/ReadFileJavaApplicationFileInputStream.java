@@ -15,8 +15,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
 
-import static jdk.nashorn.internal.objects.Global.undefined;
-
 public class ReadFileJavaApplicationFileInputStream {
 
 	public static void main(String[] args) throws IOException {
@@ -71,7 +69,7 @@ public class ReadFileJavaApplicationFileInputStream {
 						String array2[] = (name.split(", "));
 						String firstHalfOfName = array2[1].trim();
 
-						if (firstHalfOfName != undefined || !firstHalfOfName.isEmpty()) {
+						if (!firstHalfOfName.isEmpty()) {
 							if (firstHalfOfName.contains(" ")) {
 								String array3[] = firstHalfOfName.split(" ");
 								String firstName = array3[0].trim();
@@ -89,6 +87,7 @@ public class ReadFileJavaApplicationFileInputStream {
 					dates.add(formattedDate);
 
 				}
+				sc.close();
 
 				Instant namesEnd = Instant.now();
 				long timeElapsedNames = Duration.between(namesStart, namesEnd).toMillis();
@@ -111,7 +110,7 @@ public class ReadFileJavaApplicationFileInputStream {
 				for (Map.Entry<String, Integer> entry : dateMap.entrySet()) {
 					String key = entry.getKey();
 					Integer value = entry.getValue();
-					System.out.println("Donations per month and year: " + entry.getKey() + " and donation count: " + entry.getValue());
+					System.out.println("Donations per month and year: " + key + " and donation count: " + value);
 
 				}
 				Instant donationsEnd = Instant.now();
