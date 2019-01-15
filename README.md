@@ -19,6 +19,7 @@ Either run `./gradlew assemble` and then
 * `java -cp ./build/libs/readFileJava-0.0.1-SNAPSHOT.jar com.example.readFile.readFileJava.ReadFileJavaApplicationBufferedReader`,
 * `java -cp ./build/libs/readFileJava-0.0.1-SNAPSHOT.jar com.example.readFile.readFileJava.ReadFileJavaApplicationFileInputStream`, 
 * `java -cp ./build/libs/readFileJava-0.0.1-SNAPSHOT.jar com.example.readFile.readFileJava.ReadFileJavaApplicationLineIterator`
+* `java -cp ./build/libs/readFileJava-0.0.1-SNAPSHOT.jar com.example.readFile.readFileJava.ReadFileJavaApplicationStoringOnlySummaryData`
 for whichever method you want to run, from the command line.
 
 Or the easier way:
