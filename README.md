@@ -16,10 +16,13 @@ Add the file path for one of the files (could be the big one `itcont.txt` or any
 [Intellij Run](/src/main/resources/img/intellijRun.png)
 
 Either run `./gradlew assemble` and then 
-* `java -cp ./build/libs/readFileJava-0.0.1-SNAPSHOT.jar com.example.readFile.readFileJava.ReadFileJavaApplicationBufferedReader`,
-* `java -cp ./build/libs/readFileJava-0.0.1-SNAPSHOT.jar com.example.readFile.readFileJava.ReadFileJavaApplicationFileInputStream`, 
-* `java -cp ./build/libs/readFileJava-0.0.1-SNAPSHOT.jar com.example.readFile.readFileJava.ReadFileJavaApplicationLineIterator`
+* `java -cp ./build/libs/readFileJava-0.0.1-SNAPSHOT.jar com.example.readFile.readFileJava.ReadFileJavaApplicationBufferedReader [path-to-file]`,
+* `java -cp ./build/libs/readFileJava-0.0.1-SNAPSHOT.jar com.example.readFile.readFileJava.ReadFileJavaApplicationFileInputStream [path-to-file]`,
+* `java -cp ./build/libs/readFileJava-0.0.1-SNAPSHOT.jar com.example.readFile.readFileJava.ReadFileJavaApplicationLineIterator [path-to-file]`
+* `java -cp ./build/libs/readFileJava-0.0.1-SNAPSHOT.jar com.example.readFile.readFileJava.ReadFileJavaApplicationStoringOnlySummaryData [path-to-file]`
 for whichever method you want to run, from the command line.
+
+If `path-to-file` is omitted, the smaller test file will be used instead.
 
 Or the easier way:
  

@@ -34,7 +34,7 @@ public class FileReadingChallenge {
     public static void main(String[] args) {
         System.out.println("Hello World!");
 
-        File f = new File("src/main/resources/config/test.txt");
+        File f = new File(Common.getPathToTargetFile(args));
         if (!f.exists() || !f.canRead()) {
             System.out.println("Problem reading file " + f);
         }
