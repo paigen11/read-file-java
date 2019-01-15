@@ -39,3 +39,5 @@ The downloadable file seems to be live data that keeps getting larger. When I do
 
 ### Acknowledgements
 Thanks to [AtomicStryker](https://github.com/AtomicStryker) for his contribution to this repo. He added the `FileReadingChallenge.java` file, which demonstrates an asynchronous way of using fibers from the CompletableFuture API to read the file even faster. I appreciate the addition to provide even more ways to quickly churn through large amounts of data in small amounts of time.
+
+Thanks also to [Morgen Peschke](https://github.com/morgen-peschke) for his excellent contribution to the repo. He added the `ReadFileJavaApplicationStoringOnlySummaryData.java` file. It demonstrates another, more efficient solution using different data structures to solve the problems. Full details of his thought process and implementation of the code can be read [here](https://medium.com/@morgen.peschke/great-article-code-has-some-issues-e1504f32c0a6).
