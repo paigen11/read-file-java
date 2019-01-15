@@ -19,7 +19,7 @@ public class ReadFileJavaApplicationStoringOnlySummaryData {
 
     public static void main(String[] args) {
         try {
-            File f = new File("src/main/resources/config/test.txt");
+            File f = new File(Common.getPathToTargetFile(args));
             try (BufferedReader reader = new BufferedReader(new FileReader(f))) {
 
                 String readLine;
